@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<html lang="zh-Hant">	
+<head>
+    <meta charset="UTF-8">
+    <title>進階練習1~2</title>
+</head>
+
+<h3>問題 1：內嵌表格佈局</h3>
+<table border="1" width="100%">
+    <tr>
+        <td colspan="2" align="center">這是標題區域</td>
+    </tr>
+
+    <tr>
+        <td width="70%">這是主要內容區域</td>
+        <td width="30%">
+            <table border="1" width="100%">
+                <tr>
+                    <td>內嵌表格 - 行 1</td>
+                </tr>
+                <tr>
+                    <td>內嵌表格 - 行 2</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" align="center">這是頁腳區域</td>
+    </tr>
+</table>
+
+<h3>問題 2：頁籤內容切換結構</h3>
+<body>
+
+    <ul>
+        <li><a href="#youtube">YouTube</a></li>
+        <li><a href="#google">Google</a></li>
+        <li><a href="#tsla">Tesla (TSLA)</a></li>
+    </ul>
+
+    <hr> <div id="youtube">
+        <h1>YouTube</h1>
+        <p>這是全球最大的影片搜尋與分享平台。</p>
+        <p><a href="https://www.youtube.com" target="_blank">點我前往 YouTube 官網</a></p>
+    </div>
+
+    <hr>
+
+    <div id="google">
+        <h1>Google</h1>
+        <p>這是全球領先的搜尋引擎與科技公司。</p>
+        <p><a href="https://www.google.com" target="_blank">點我前往 Google 官網</a></p>
+    </div>
+
+    <hr>
+
+    <div id="tsla">
+        <h1>Tesla (TSLA)</h1>
+        <p>這是全球知名的電動車與能源公司。</p>
+        <p><a href="https://www.tesla.com" target="_blank">點我前往 Tesla 官網</a></p>
+    </div>
+
+</body>
+
+
+</html>
