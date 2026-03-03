@@ -1,0 +1,45 @@
+body {
+    font-family: Tahoma, sans-serif;
+    font-size: 40px;
+    margin: 0;
+}
+
+.box-container {
+    display: flex;
+    gap: 10px;
+}
+
+.box {
+    width: 100px;
+    height: 150px;
+    background-color: #eeeff2;
+    border-left: 10px dotted #D0D0FF;
+    text-align: center;
+    display: flex;
+    letter-spacing: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.box:hover {
+    cursor: pointer;
+    background-color: yellow;
+    color: goldenrod;
+}
+
+.final-box {
+    width: 100px;
+    height: 150px;
+    background-color: #eeeff2;
+    border-left: 10px dotted #D0D0FF;
+    text-align: center;
+    display: flex;
+    letter-spacing: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.box:last-child {
+    margin-left: auto;
+}

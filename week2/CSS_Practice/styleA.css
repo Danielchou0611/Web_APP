@@ -1,0 +1,43 @@
+/* 設定全域字體與頁面高度 */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    /* 改用 center 讓整體在頁面中間，或 flex-start 從頂部開始 */
+    justify-content: center; 
+    align-items: center;
+    /* 設定固定的間隔距離，這能保證縮放時方塊間距永遠一致 */
+    gap: 20px; 
+    background-color: white;
+}
+
+/* 通用方塊樣式 */
+.box {
+    width: 100px;             /* 寬度 100px  */
+    height: 100px;            /* 高度 100px  */
+    font-family: Tahoma, sans-serif; /* 字體 Tahoma  */
+    font-size: 40px;          /* 字體大小 40px  */
+    text-align: center;       /* 文字水平置中 [cite: 36] */
+    border-top: 1px solid #687291; /* 頂部 1px 顏色 #687291 的線  */
+    box-sizing: border-box;   /* 確保邊框不會改變方塊大小  */
+    flex-shrink: 0;           /* 確保方塊不會因為視窗縮小而變形  */
+}
+
+/* 交替背景顏色  */
+.box:nth-child(odd) {
+    background-color: #dfe1e7;
+}
+
+.box:nth-child(even) {
+    background-color: #eeeff2;
+}
+
+/* 最後一個元素 (F) 的特殊規範  */
+.box-f {
+    background-color: #687291 !important; /* 背景顏色 #687291 */
+    border: 4px solid black;             /* 4px 黑色邊框 */
+    display: flex;
+    justify-content: center;             /* 水平置中內容 */
+    align-items: center;                 /* 達成文字垂直置中 */
+}

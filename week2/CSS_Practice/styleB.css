@@ -1,0 +1,35 @@
+/* Style B 規範設定 */
+
+body {
+    margin: 0;
+    font-family: Tahoma, sans-serif; /* 字體為 Tahoma */
+    font-size: 40px;               /* 字體大小 40 像素 */
+    white-space: nowrap;          /* 即使瀏覽器縮小，方塊 A-E 也不換行 */
+}
+
+.box {
+    display: inline-block;        /* 水平排列 */
+    width: 100px;                 /* 寬 100 像素 */
+    height: 150px;                /* 高 150 像素 */
+    background-color: #eeeff2;    /* 背景顏色 #eeeff2 */
+    border-left: 10px dotted #D0D0FF; /* 左側 10px 點狀線 */
+    margin-right: 10px;           /* 方塊之間間隔 10 像素 */
+    padding-left: 10px;          /* 文字與左邊緣（點狀線）間隔 10 像素 */
+    box-sizing: border-box;       /* 確保 Padding 不會撐大方塊 */
+    vertical-align: top;
+}
+
+/* 懸停效果：使用 :not 排除方塊 F，只有 A-E 會觸發 */
+.box:not(.box-f):hover {
+    cursor: pointer;              /* 游標變為手型 */
+    background-color: yellow;      /* 背景變黃色 */
+    color: goldenrod;             /* 文字變金黃色 */
+}
+
+/* 方塊 F 的特殊定位 */
+.box-f {
+    position: fixed;              /* 固定在視窗位置 */
+    bottom: 0;                    /* 靠底 */
+    right: 0;                     /* 靠右 */
+    margin: 0;                    /* 移除外邊距以完美貼齊右下角 */
+}
