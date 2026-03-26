@@ -1,0 +1,77 @@
+線上編輯器和React與Vue補充
+線上編輯器
+
+1. codepen: https://codepen.io/
+
+2. codesandbox: https://codesandbox.io/s/new
+
+3. stackblitz: https://stackblitz.com/
+
+4. codemirror: https://codemirror.net/
+
+ 
+
+ 
+
+MVC架構
+https://i0.wp.com/tw.alphacamp.co/wp-content/uploads/2022/12/60d29cc33f302e939d1d0380______2017-11-28_17.00.25.png?w=800&ssl=1
+
+
+MVVM架構
+https://dreambo4.github.io/2021/10/07/Android-APP-01-%E6%9E%B6%E6%A7%8B%E4%BB%8B%E7%B4%B9-MVVM/mvvm.jpg
+
+
+Angular vs React vs Vue
+https://www.slideserve.com/EdurekaIN/angular-vs-react-vs-vue-javascript-frameworks-comparison-which-one-you-should-learn-edureka-powerpoint-ppt-presentation
+
+ 
+
+ 
+
+React 官網與文件：https://react.dev/
+
+(官方直接推薦 server side rendering的 Next js、Remix 作為使用 react 的 framework，
+
+client side rendering 的 create-react-app 移除列表)
+
+ 
+
+React舊官網：https://zh-hant.reactjs.org/
+
+Hello world：https://zh-hant.reactjs.org/docs/hello-world.html
+
+學習指南：https://zh-hant.reactjs.org/tutorial/tutorial.html
+
+w3schools：https://www.w3schools.com/react/default.asp
+
+ 
+
+React 是什麼？給新手的 React 入門
+https://tw.alphacamp.co/blog/react-beginner
+
+ 
+
+從零開始建立一個React.js專案
+https://medium.com/web-design-zone/%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%E5%BB%BA%E7%AB%8B%E4%B8%80%E5%80%8Breact-js%E5%B0%88%E6%A1%88-ac591424c953
+
+ 
+
+React發展過程：React.js: The Documentary https://www.youtube.com/watch?v=8pDqJVdNa44
+
+ 
+
+
+重新認識 Vue.js
+https://book.vue.tw/
+
+ 
+
+【Vue.js入門】一小時學會 Vue.component，完成動態飯店房間清單
+https://creativecoding.in/2022/05/17/vue-js-hotel-room-list/
+
+ 
+
+React 與 Vue — 有了 jQuery 為什麼要有xxx？
+https://f2e.kalan.dev/frontend-ui-development/10.html#%E7%B6%B2%E9%A0%81%E7%9A%84%E4%BA%92%E5%8B%95%E8%B6%8A%E4%BE%86%E8%B6%8A%E8%A4%87%E9%9B%9C
+
+ 

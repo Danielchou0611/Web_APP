@@ -1,0 +1,60 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border: #e5e4e7;
+  --accent: #aa3bff;
+  --accent-hover: #8e2ce6;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --danger: #ff4d4d;
+  --danger-hover: #cc0000;
+  --shadow: rgba(0, 0, 0, 0.08) 0 10px 15px -3px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
+  --radius: 12px;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  font: 16px/1.5 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #a1a1aa;
+    --text-h: #f4f4f5;
+    --bg: #121214;
+    --card-bg: #1e1e24;
+    --border: #2e303a;
+    --accent: #c084fc;
+    --accent-hover: #a855f7;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --shadow: rgba(0, 0, 0, 0.3) 0 10px 15px -3px, rgba(0, 0, 0, 0.2) 0 4px 6px -2px;
+  }
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#app {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-h);
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: -0.025em;
+  background: linear-gradient(to right, var(--accent), #ff4d4d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

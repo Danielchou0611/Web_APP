@@ -1,0 +1,135 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f39c12;
+    --success-color: #27ae60;
+    --error-color: #e74c3c;
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-gradient);
+}
+
+.game-container {
+    background: var(--card-bg);
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#range-display {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+#guess-input {
+    width: 200px;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+#guess-input:focus {
+    border-color: var(--primary-color);
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+button:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#message {
+    font-size: 1.3rem;
+    font-weight: 500;
+    min-height: 1.5em;
+    margin: 1rem 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.success { color: var(--success-color); background: #e8f5e9; }
+.error { color: var(--error-color); background: #fdeaea; }
+.hint { color: var(--secondary-color); background: #fff8e1; }
+
+#history-container {
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+#history-container h3 {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#history-list li {
+    background: #f0f2f5;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: #444;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}

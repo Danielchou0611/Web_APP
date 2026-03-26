@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企業 CEO 問答(五題)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="quiz-container">
+        <header>
+            <h1>CEO 知識大挑戰</h1>
+            <div id="score-container">目前得分：<span id="score">0</span></div>
+        </header>
+
+        <main id="quiz-body">
+            <div id="question-container">
+                <h2 id="question">正在載入問題...</h2>
+            </div>
+            
+            <div id="options-container" class="options-grid">
+            </div>
+
+            <div id="feedback" class="feedback hidden">
+                <p id="feedback-text"></p>
+                <button id="next-btn" class="next-btn">下一題</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
