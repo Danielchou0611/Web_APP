@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List (Node.js App)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #app {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>To-Do List</h1>
+        <input type="text" id="newTodo" placeholder="Add a new task">
+        <button onclick="addTodo()">Add</button>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script>
+        const newTodoInput = document.getElementById('newTodo');
+        const todoList = document.getElementById('todoList');
+
+        // Fetch todos when page loads
+        document.addEventListener('DOMContentLoaded', fetchTodos);
+
+        // Add event listener for "Enter" key
+        newTodoInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                addTodo();
+            }
+        });
+
+        async function fetchTodos() {
+            try {
+                const response = await fetch('/api/todos');
+                const todos = await response.json();
+                renderTodos(todos);
+            } catch (error) {
+                console.error('Error fetching todos:', error);
+            }
+        }
+
+        function renderTodos(todos) {
+            todoList.innerHTML = '';
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${todo.text}</span>
+                    <button onclick="removeTodo('${todo.id}')">Remove</button>
+                `;
+                todoList.appendChild(li);
+            });
+        }
+
+        async function addTodo() {
+            const todoText = newTodoInput.value.trim();
+            if (todoText !== '') {
+                try {
+                    const response = await fetch('/api/todos', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ text: todoText })
+                    });
+                    if (response.ok) {
+                        newTodoInput.value = '';
+                        fetchTodos(); // Refresh list
+                    }
+                } catch (error) {
+                    console.error('Error adding todo:', error);
+                }
+            }
+        }
+
+        async function removeTodo(id) {
+            try {
+                const response = await fetch(`/api/todos/${id}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    fetchTodos(); // Refresh list
+                }
+            } catch (error) {
+                console.error('Error removing todo:', error);
+            }
+        }
+    </script>
+</body>
+</html>

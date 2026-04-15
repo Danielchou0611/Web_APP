@@ -1,0 +1,19 @@
+/* index.css */
+:root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center; /* 讓內容置中 */
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

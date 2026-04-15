@@ -1,0 +1,144 @@
+/* style.css */
+body { 
+    margin: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    /* 背景漸層不變，維持舒適感 */
+    background: linear-gradient(135deg, #74b9ff, #a29bfe); 
+    font-family: 'Microsoft JhengHei', sans-serif; 
+}
+
+.card { 
+    background-color: rgba(255, 255, 255, 0.95); 
+    padding: 60px;          /* 再增加內距，讓內容有呼吸空間 */
+    border-radius: 30px; 
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25); 
+    text-align: center; 
+    width: 90%; 
+    max-width: 600px;       /* 從 450px 拓寬到 600px，視覺更開闊 */
+    transition: all 0.4s ease;
+}
+
+h2 { 
+    color: #2d3436; 
+    margin-bottom: 40px; 
+    font-size: 36px;       /* 標題再大一點 */
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-size: 34px;       /* 城市名稱更醒目 */
+    margin: 15px 0;
+    color: #0984e3;
+}
+
+.weather-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 30px;            /* 元件間距拉開 */
+}
+
+/* 選擇框與按鈕：在寬版中看起來更有份量 */
+select, button { 
+    padding: 20px;         /* 增加高度 */
+    border-radius: 15px; 
+    font-size: 22px;       /* 字體提升到 22px */
+    width: 100%; 
+    box-sizing: border-box; 
+    outline: none;
+    border: 2px solid #dfe6e9;
+}
+
+select { 
+    background-color: #f8f9fa; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+select:focus {
+    border-color: #0984e3;
+}
+
+button { 
+    background-color: #0984e3; 
+    color: white; 
+    border: none; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button:hover:not(:disabled) { 
+    background-color: #00cec9; /* 換個亮一點的藍綠色 */
+    transform: scale(1.02);    /* 輕微放大感 */
+}
+
+button:disabled {
+    background-color: #b2bec3;
+}
+
+.result-area { 
+    margin-top: 45px; 
+    padding-top: 35px; 
+    border-top: 4px solid #f1f2f6; 
+}
+
+.forecast-time { 
+    font-size: 20px; 
+    color: #636e72; 
+    margin-bottom: 25px; 
+}
+
+.weather-display { 
+    margin: 30px 0; 
+    display: flex; 
+    /* 在寬版中，我們可以考慮讓圖示與文字左右排列，或是維持垂直大圖 */
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.weather-icon { 
+    width: 160px;         /* 圖示加大到 160px */
+    height: 160px; 
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+}
+
+.weather-state { 
+    font-size: 32px;      /* 天氣狀態文字加大 */
+    font-weight: 800; 
+    color: #2d3436; 
+    margin-top: 15px;
+}
+
+.weather-info { 
+    text-align: left; 
+    background-color: #f1f5f9; 
+    padding: 30px 40px;   /* 內距加大 */
+    border-radius: 20px; 
+    margin-top: 30px; 
+}
+
+.weather-info p { 
+    margin: 15px 0; 
+    font-size: 24px;      /* 數值文字大幅提升 */
+    color: #2d3436; 
+    display: flex; 
+    justify-content: space-between; 
+}
+
+.weather-info strong { 
+    color: #0984e3; 
+    font-size: 26px;
+}
+
+/* 響應式微調：如果螢幕太小，自動縮回一點 */
+@media (max-width: 480px) {
+    .card {
+        padding: 30px;
+    }
+    h2 { font-size: 28px; }
+    .weather-info p { font-size: 20px; }
+}

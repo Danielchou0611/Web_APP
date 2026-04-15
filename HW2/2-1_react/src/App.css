@@ -1,0 +1,118 @@
+/* 基礎樣式 */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding-top: 60px; /* 為固定導航欄留出空間 */
+}
+
+/* 導航欄樣式 */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.nav-logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #000;
+    background-color: #f4f4f4;
+}
+
+/* 漢堡選單按鈕樣式 */
+.menu-toggle {
+    display: none; 
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* 響應式設定 (手機版) */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; 
+    }
+
+    .nav-links {
+        display: none; /* 預設隱藏選單 */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #333;
+        text-align: left;
+    }
+
+    /* 當 React 狀態為 true 時顯示 */
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0;
+        border-top: 1px solid #444;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        border-radius: 0;
+    }
+
+    /* 漢堡選單動畫邏輯改用 .active class */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+h1 {
+    color: #333;
+    margin-top: 40px;
+}
+

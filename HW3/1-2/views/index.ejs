@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣天氣預報 - SSR 版</title>
+    <style>
+        /* 1. 基礎設定 */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            background: linear-gradient(135deg, #74b9ff, #a29bfe); 
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; 
+        }
+
+        /* 2. 卡片容器 */
+        .card { 
+            background-color: rgba(255, 255, 255, 0.95); 
+            padding: 40px; 
+            border-radius: 24px; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15); 
+            text-align: center; 
+            width: 90%; 
+            max-width: 374px; /* 初始寬度 */
+            box-sizing: border-box;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* 加入平滑動畫 */
+            transform: translateX(-20px);
+        }
+
+        /* 當有 weatherData 時觸發變寬 */
+        .card.wide {
+            max-width: 480px;
+        }
+
+        h2 { margin-bottom: 30px; font-size: 28px; }
+        h2 a { color: #2d3436; text-decoration: none; transition: opacity 0.2s; }
+        h2 a:hover { opacity: 0.7; }
+
+        /* 3. 表單 - 初始為垂直排列 */
+        .weather-form { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            margin-bottom: 20px;
+        }
+
+        select, button { 
+            padding: 15px; 
+            border-radius: 12px; 
+            font-size: 18px; 
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 當卡片變寬後，表單恢復為平行排版 */
+        .card.wide .weather-form {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .card.wide select {
+            flex: 2;
+            min-width: 200px;
+            width: auto;
+        }
+
+        .card.wide button {
+            flex: 1;
+            min-width: 120px;
+            width: auto;
+        }
+
+        select { border: 2px solid #dfe6e9; cursor: pointer; }
+        button { background-color: #0984e3; color: white; font-weight: 600; cursor: pointer; }
+        button:hover { background-color: #00a8ff; }
+
+        /* 4. 結果區域 */
+        .result-area { 
+            margin-top: 30px; 
+            padding-top: 30px; 
+            border-top: 2px solid #f1f2f6; 
+        }
+
+        .forecast-time { color: #636e72; margin-bottom: 20px; }
+        
+        .weather-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .weather-state { font-size: 24px; font-weight: bold; color: #2d3436; margin-top: 10px; }
+
+        .weather-info-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .info-box {
+            flex: 1;
+            min-width: 180px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-label { color: #636e72; font-size: 14px; margin-bottom: 5px; }
+        .info-value { color: #0984e3; font-size: 22px; font-weight: bold; }
+
+        .weather-icon { 
+            width: 120px; 
+            height: 120px; 
+            transition: transform 0.3s ease; 
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0984e3;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card <%= (typeof weatherData !== 'undefined' && weatherData) ? 'wide' : '' %>">
+        <h2><a href="/">台灣天氣預報</a></h2>
+        
+        <form class="weather-form" action="/weather" method="GET">
+            <select name="locationName" required>
+                <option value="" disabled <%= typeof city === 'undefined' ? 'selected' : '' %>>請選擇縣市</option>
+                <optgroup label="北部地區">
+                    <option value="臺北市" <%= typeof city !== 'undefined' && city === '臺北市' ? 'selected' : '' %>>臺北市</option>
+                    <option value="新北市" <%= typeof city !== 'undefined' && city === '新北市' ? 'selected' : '' %>>新北市</option>
+                    <option value="基隆市" <%= typeof city !== 'undefined' && city === '基隆市' ? 'selected' : '' %>>基隆市</option>
+                    <option value="桃園市" <%= typeof city !== 'undefined' && city === '桃園市' ? 'selected' : '' %>>桃園市</option>
+                    <option value="新竹市" <%= typeof city !== 'undefined' && city === '新竹市' ? 'selected' : '' %>>新竹市</option>
+                    <option value="新竹縣" <%= typeof city !== 'undefined' && city === '新竹縣' ? 'selected' : '' %>>新竹縣</option>
+                    <option value="宜蘭縣" <%= typeof city !== 'undefined' && city === '宜蘭縣' ? 'selected' : '' %>>宜蘭縣</option>
+                </optgroup>
+                <optgroup label="中部地區">
+                    <option value="臺中市" <%= typeof city !== 'undefined' && city === '臺中市' ? 'selected' : '' %>>臺中市</option>
+                    <option value="苗栗縣" <%= typeof city !== 'undefined' && city === '苗栗縣' ? 'selected' : '' %>>苗栗縣</option>
+                    <option value="彰化縣" <%= typeof city !== 'undefined' && city === '彰化縣' ? 'selected' : '' %>>彰化縣</option>
+                    <option value="南投縣" <%= typeof city !== 'undefined' && city === '南投縣' ? 'selected' : '' %>>南投縣</option>
+                    <option value="雲林縣" <%= typeof city !== 'undefined' && city === '雲林縣' ? 'selected' : '' %>>雲林縣</option>
+                </optgroup>
+                <optgroup label="南部地區">
+                    <option value="高雄市" <%= typeof city !== 'undefined' && city === '高雄市' ? 'selected' : '' %>>高雄市</option>
+                    <option value="臺南市" <%= typeof city !== 'undefined' && city === '臺南市' ? 'selected' : '' %>>臺南市</option>
+                    <option value="嘉義市" <%= typeof city !== 'undefined' && city === '嘉義市' ? 'selected' : '' %>>嘉義市</option>
+                    <option value="嘉義縣" <%= typeof city !== 'undefined' && city === '嘉義縣' ? 'selected' : '' %>>嘉義縣</option>
+                    <option value="屏東縣" <%= typeof city !== 'undefined' && city === '屏東縣' ? 'selected' : '' %>>屏東縣</option>
+                </optgroup>
+                <optgroup label="東部地區">
+                    <option value="花蓮縣" <%= typeof city !== 'undefined' && city === '花蓮縣' ? 'selected' : '' %>>花蓮縣</option>
+                    <option value="臺東縣" <%= typeof city !== 'undefined' && city === '臺東縣' ? 'selected' : '' %>>臺東縣</option>
+                </optgroup>
+                <optgroup label="離島地區">
+                    <option value="澎湖縣" <%= typeof city !== 'undefined' && city === '澎湖縣' ? 'selected' : '' %>>澎湖縣</option>
+                    <option value="金門縣" <%= typeof city !== 'undefined' && city === '金門縣' ? 'selected' : '' %>>金門縣</option>
+                    <option value="連江縣" <%= typeof city !== 'undefined' && city === '連江縣' ? 'selected' : '' %>>連江縣</option>
+                </optgroup>
+            </select>
+            <button type="submit">查詢天氣</button>
+        </form>
+
+        <div class="result-area">
+            <% if (typeof error !== 'undefined') { %>
+                <p style="color: #e74c3c"><%= error %></p>
+                <a href="/" class="back-link">← 返回重新查詢</a>
+            <% } else if (typeof weatherData !== 'undefined' && weatherData) { %>
+                <div>
+                    <h3><%= weatherData.locationName %></h3>
+                    <p class="forecast-time"><%= weatherData.timeString %></p>
+                    
+                    <div class="weather-display">
+                        <img src="<%= weatherData.iconUrl %>" alt="<%= weatherData.weatherState %>" class="weather-icon" />
+                        <div class="weather-state"><%= weatherData.weatherState %></div>
+                    </div>
+
+                    <div class="weather-info-container">
+                        <div class="info-box">
+                            <div class="info-label">氣溫範圍</div>
+                            <div class="info-value"><%= weatherData.minTemp %>°C - <%= weatherData.maxTemp %>°C</div>
+                        </div>
+                        <div class="info-box">
+                            <div class="info-label">降雨機率</div>
+                            <div class="info-value"><%= weatherData.pop %>%</div>
+                        </div>
+                    </div>
+                    <a href="/" class="back-link">← 返回重新查詢</a>
+                </div>
+            <% } else { %>
+                <p style="color: #999">請選擇城市並點擊查詢</p>
+            <% } %>
+        </div>
+    </div>
+
+</body>
+</html>
